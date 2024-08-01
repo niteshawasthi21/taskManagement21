@@ -1,7 +1,8 @@
-<form [formGroup]="registerForm" (ngSubmit)="submitDetails()">
-    <p-card header="Register" [style]="{ width: '360px' }">
+<form [formGroup]="registerForm" (ngSubmit)="submitDetails()" class="register-form">
+  <p-card header="Register" class="p-shadow-3">
+    <div class="p-fluid">
       <div class="field">
-        <label for="fullName">FullName</label>
+        <label for="fullName">Full Name</label>
         <input
           type="text"
           pInputText
@@ -64,21 +65,16 @@
           placeholder="Confirm Password"
         />
         <small
-          *ngIf="
-            confirmPassword.invalid &&
-            (confirmPassword.dirty || confirmPassword.touched)
-          "register
+          *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
           class="block p-error"
         >
-          <div *ngIf="confirmPassword.errors?.['required']">
-            Confirm the password
-          </div>
+          <div *ngIf="confirmPassword.errors?.['required']">Confirm the password</div>
         </small>
         <small
           class="block p-error"
           *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
         >
-          Password should match
+          Passwords should match
         </small>
       </div>
       <p-button
@@ -86,7 +82,11 @@
         styleClass="w-full"
         [disabled]="registerForm.invalid"
         type="submit"
+        class="p-button-raised p-button-primary hover-effect"
       ></p-button>
-      <div class="mt-2">Already a member? <a routerLink="/login">Login</a></div>
-    </p-card>
-  </form>
+      <div class="mt-2 text-center">
+        Already a member? <a routerLink="/login">Login</a>
+      </div>
+    </div>
+  </p-card>
+</form>

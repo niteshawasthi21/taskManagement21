@@ -9,9 +9,12 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { RatingModule } from 'primeng/rating';
 
 const primeNgComponents = [
-  CommonModule,
+  CommonModule,RatingModule,TagModule,TableModule,
   FormsModule,
   ReactiveFormsModule,
   CardModule,

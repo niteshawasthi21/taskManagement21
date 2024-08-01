@@ -1,5 +1,6 @@
-<form [formGroup]="loginForm" (ngSubmit)="loginUser()" class="border-2 border-primary p-5">
-    <p-card header="Login"  >
+<form [formGroup]="loginForm" (ngSubmit)="loginUser()" class="login-form">
+  <p-card header="Login" class="p-shadow-3">
+    <div class="p-fluid">
       <div class="field">
         <label for="email">Email</label>
         <input
@@ -7,7 +8,7 @@
           pInputText
           formControlName="email"
           class="w-full"
-          name="email"container
+          name="email"
           placeholder="Type your email"
         />
         <small
@@ -15,7 +16,7 @@
           class="block p-error"
         >
           <div *ngIf="email.errors?.['required']">Email is required.</div>
-          <div *ngIf="email.errors?.['email']">Email should be valid</div>
+          <div *ngIf="email.errors?.['email']">Email should be valid.</div>
         </small>
       </div>
       <div class="field">
@@ -40,7 +41,11 @@
         styleClass="w-full"
         [disabled]="loginForm.invalid"
         type="submit"
+        class="p-button-raised p-button-primary hover-effect"
       ></p-button>
-      <div class="mt-2">Not a member? <a routerLink="/register">Register</a></div>
-    </p-card>
-  </form>
+      <div class="mt-2 text-center">
+        Not a member? <a routerLink="/register">Register</a>
+      </div>
+    </div>
+  </p-card>
+</form>

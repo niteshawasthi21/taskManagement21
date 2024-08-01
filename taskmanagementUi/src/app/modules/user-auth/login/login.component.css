@@ -1,4 +1,112 @@
-.formdiv{
+/* Container for centering the form */
+body, html {
+    height: 100%;
+    margin: 0;
     display: flex;
-    justify-content: space-around;
-}
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+  }
+  
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f7f5e6; /* Cream background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .login-form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Elevated shadow on hover */
+  }
+  
+  .field {
+    margin-bottom: 16px;
+  }
+  
+  .field label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    display: block;
+    color: #495057;
+  }
+  
+  input[pInputText] {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  
+  input[pInputText]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .hover-effect {
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .hover-effect:hover {
+    background-color: #0056b3 !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  .p-card {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .p-card .p-card-header {
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .mt-2 {
+    margin-top: 12px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 576px) {
+    .login-form {
+      padding: 15px;
+      margin: 10px;
+    }
+  
+    .p-card .p-card-header {
+      font-size: 16px;
+      padding: 12px;
+    }
+  
+    .field label {
+      font-size: 14px;
+    }
+  
+    input[pInputText] {
+      font-size: 14px;
+    }
+  }
+  
