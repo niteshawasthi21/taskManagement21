@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from './taskservice';
-import { PrimengComponentsModule } from '../../shared/primeng-components/primeng-components.module';
+import { PrimengComponentsModule } from '../../shared/components/primeng-components/primeng-components.module';
 
 
 interface Column {

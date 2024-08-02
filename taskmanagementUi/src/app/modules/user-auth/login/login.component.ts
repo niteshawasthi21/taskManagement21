@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { MessageService } from 'primeng/api';
-import { PrimengComponentsModule } from '../../../shared/primeng-components/primeng-components.module';
+import { MessageService } from 'primeng/api';
+import { PrimengComponentsModule } from '../../../shared/components/primeng-components/primeng-components.module';
+import { UserAuthService } from '../authservice/user-auth.service';
 
 @Component({
   selector: 'login-component',
@@ -10,6 +11,7 @@ import { PrimengComponentsModule } from '../../../shared/primeng-components/prim
   imports: [PrimengComponentsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
+  providers:[MessageService,UserAuthService]
 })
 export class LoginComponent {
   loginForm = this.fb.group({
@@ -19,9 +21,9 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    // private authService: AuthService,
+    private authService: UserAuthService,
     private router: Router,
-    // private msgService: MessageService
+    private msgService: MessageService
   ) {}
 
   get email() {
@@ -32,27 +34,21 @@ export class LoginComponent {
   }
 
   loginUser() {
-    const { email, password } = this.loginForm.value;
-    // this.authService.getUserByEmail(email as string).subscribe(
-    //   (response) => {
-    //     if (response.length > 0 && response[0].password === password) {
-    //       sessionStorage.setItem('email', email as string);
-    //       this.router.navigate(['/home']);
-    //     } else {
-    //       this.msgService.add({
-    //         severity: 'error',
-    //         summary: 'Error',
-    //         detail: 'email or password is wrong',
-    //       });
-    //     }
-    //   },
-    //   (error) => {
-    //     this.msgService.add({
-    //       severity: 'error',
-    //       summary: 'Error',
-    //       detail: 'Something went wrong',
-    //     });
-    //   }
-    // );
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    const userLogin = {...this.loginForm.value};
+     // Make a POST request to the login endpoint with the user's credentials
+      this.authService.login(userLogin).subscribe(
+        response => {
+          console.log(response);
+          this.msgService.add({ severity: 'success', summary: 'Success', detail: 'LoggedIn successfully' });
+          this.router.navigate(['dashboard']);
+        },
+        error => {
+          this.msgService.add({ severity: 'error', summary: 'Error', detail: 'Authentication failed' });
+        }
+      );
   }
 }

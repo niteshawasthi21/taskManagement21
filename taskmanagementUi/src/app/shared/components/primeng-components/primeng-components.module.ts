@@ -12,9 +12,13 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
+import { ToastModule } from 'primeng/toast';
 
 const primeNgComponents = [
-  CommonModule,RatingModule,TagModule,TableModule,
+  CommonModule,
+  RatingModule,
+  TagModule,
+  TableModule,
   FormsModule,
   ReactiveFormsModule,
   CardModule,
@@ -22,7 +26,9 @@ const primeNgComponents = [
   AvatarModule,
   ToolbarModule,
   DropdownModule,
-  MenubarModule,ButtonModule
+  MenubarModule,
+  ButtonModule,
+  ToastModule,
 ];
 
 @NgModule({

@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
-import { PrimengComponentsModule } from '../../../shared/primeng-components/primeng-components.module';
+import { PrimengComponentsModule } from '../../../shared/components/primeng-components/primeng-components.module';
 import { FormBuilder, Validators } from '@angular/forms';
-// import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { passwordMatchValidator } from '../../../shared/directives/password-match.directive';
+import { MessageService } from 'primeng/api';
+import { UserAuthService } from '../authservice/user-auth.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [PrimengComponentsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css'],
+  providers: [MessageService,UserAuthService]
 })
 export class RegisterComponent {
 
@@ -19,13 +22,13 @@ export class RegisterComponent {
     password: ['', Validators.required],
     confirmPassword: ['', Validators.required]
   }, {
-    // validators: passwordMatchValidator
-  })
+    validators: passwordMatchValidator
+  });
 
   constructor(
     private fb: FormBuilder,
-    // private authService: AuthService,
-    // private messageService: MessageService,
+    private authService: UserAuthService,
+    private messageService: MessageService,
     private router: Router
   ) { }
 
@@ -46,19 +49,19 @@ export class RegisterComponent {
   }
 
   submitDetails() {
+    if (this.registerForm.invalid) {
+      return;
+    }
+
     const postData = { ...this.registerForm.value };
-    delete postData.confirmPassword;
-    // this.authService.registerUser(postData as User).subscribe(
-    //   response => {
-    //     console.log(response);
-    //     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register successfully' });
-    //     this.router.navigate(['login'])
-    //   },
-    //   error => {
-    //     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
-    //   }
-    // )
+    this.authService.registerUser(postData).subscribe(
+      response => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Registered successfully' });
+        this.router.navigate(['login']);          
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error?.error.message });
+      }
+    );
   }
-
-
 }

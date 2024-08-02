@@ -87,20 +87,7 @@
       flex: 1 1 48%;
       margin: 1%;
     }
-  }
-  
-  /* Adjustments for PrimeNG components */
-  /* .p-fluid .p-field {
-    width: 100%;
-  }
-  
-  .p-grid .p-col {
-    padding: 0.5rem;
-  }
-  
-  .p-button {
-    margin: 0.5rem 0;
-  } */
+  } 
   
   /* CSS Reset */
   html, body{
@@ -110,7 +97,7 @@
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    background-color: #f7f5e6;
+    background-color: #cbd3e9;
   }
   
  

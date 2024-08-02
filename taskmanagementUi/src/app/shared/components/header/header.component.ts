@@ -1,4 +1,4 @@
-import { PrimengComponentsModule } from '../../primeng-components/primeng-components.module';
+import { PrimengComponentsModule } from '../primeng-components/primeng-components.module';
 import { Component } from '@angular/core';
 
 @Component({
