@@ -100,8 +100,13 @@
     background-color: #cbd3e9;
   }
   
- 
-  
+
+  /* PrimeNg component unused css reset */
+
+  /* Button css reset */
+  .p-button:focus{
+    box-shadow: none;
+  }
   
   
   

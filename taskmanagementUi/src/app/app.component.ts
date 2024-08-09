@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { LoginComponent } from './modules/user-auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -15,4 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'taskmanagementUi';
+
+  constructor(private primengConfig: PrimeNGConfig) {}
+
+  ngOnInit() {
+      this.primengConfig.ripple = true;
+  }
 }
