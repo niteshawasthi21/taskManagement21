@@ -1,0 +1,43 @@
+<div class="task-creation-container"> 
+    <form [formGroup]="taskForm" (ngSubmit)="submitTask()">
+      <div class="p-field">
+        <label for="title">Title</label>
+        <input id="title" type="text" pInputText formControlName="title" />
+        <p-message
+          *ngIf="taskForm.controls['title'].invalid && taskForm.controls['title'].touched"
+          severity="error"
+          text="Title is required."
+        ></p-message>
+      </div>
+  
+      <div class="p-field">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          pInputTextarea
+          formControlName="description"
+          rows="3"
+          autoResize="true"
+        ></textarea>
+      </div>
+
+      <div class="p-field">
+        <label for="status">Status</label>
+        <p-dropdown
+          [options]="[{ label: 'Pending', value: 'pending' }, { label: 'In Progress', value: 'in-progress' }, { label: 'Completed', value: 'completed' }]"
+          formControlName="status"
+          placeholder="Select a Status"
+        ></p-dropdown>
+      </div>
+  
+      <div class="p-field">
+        <button
+          type="submit"
+          pButton
+          label="Create Task"
+          icon="pi pi-check"
+          [disabled]="taskForm.invalid"
+        ></button>
+      </div>
+    </form>
+  </div>

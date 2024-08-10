@@ -1,67 +1,7 @@
 
 <div class="addTask flex justify-content-center align-items-center h-screen">
-    <p-button pRipple label="Add Task" icon="pi pi-plus" badgeClass="p-badge-contrast" outlined="true" />
-</div>
-
-
-
-
-
-<div class="task-creation-container">
-    <h2>Create New Task</h2>
-    <form [formGroup]="taskForm" (ngSubmit)="submitTask()">
-      <div class="p-field">
-        <label for="title">Title</label>
-        <input id="title" type="text" pInputText formControlName="title" />
-        <!-- <p-message
-          *ngIf="title.invalid && title.touched"
-          severity="error"
-          text="Title is required."
-        ></p-message> -->
-      </div>
-  
-      <div class="p-field">
-        <label for="description">Description</label>
-        <!-- <textarea
-          id="description"
-          pInputTextarea
-          formControlName="description"
-          rows="3"
-          [autoResize]="true"
-        ></textarea> -->
-      </div>
-  
-      <div class="p-field">
-        <label for="price">Price</label>
-        <input id="price" type="number" pInputText formControlName="price" />
-        <!-- <p-message
-          *ngIf="price.invalid && price.touched"
-          severity="error"
-          text="Price must be a positive number."
-        ></p-message> -->
-      </div>
-  
-      <div class="p-field">
-        <label for="status">Status</label>
-        <p-dropdown
-          [options]="[{ label: 'Pending', value: 'pending' }, { label: 'In Progress', value: 'in-progress' }, { label: 'Completed', value: 'completed' }]"
-          formControlName="status"
-          placeholder="Select a Status"
-        ></p-dropdown>
-      </div>
-  
-      <div class="p-field">
-        <button
-          type="submit"
-          pButton
-          label="Create Task"
-          icon="pi pi-check"
-          [disabled]="taskForm.invalid"
-        ></button>
-      </div>
-    </form>
-  </div>
-  
+    <p-button pRipple label="Add Task" icon="pi pi-plus" badgeClass="p-badge-contrast" outlined="true" (click)="openCraete()" />
+</div>  
 <!-- <div class="card">
     <p-table [value]="products" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header" let-columns>

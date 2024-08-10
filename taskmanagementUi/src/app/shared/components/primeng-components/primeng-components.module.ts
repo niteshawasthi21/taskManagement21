@@ -13,7 +13,8 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
 import { ToastModule } from 'primeng/toast';
-import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 const primeNgComponents = [
   CommonModule,
@@ -29,7 +30,9 @@ const primeNgComponents = [
   DropdownModule,
   MenubarModule,
   ButtonModule,
-  ToastModule,MessagesModule
+  ToastModule,
+  MessageModule,
+  DynamicDialogModule
 ];
 
 @NgModule({
