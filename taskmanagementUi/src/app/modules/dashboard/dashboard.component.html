@@ -1,40 +1,30 @@
 
-<div class="addTask flex justify-content-center align-items-center h-screen">
-    <p-button pRipple label="Add Task" icon="pi pi-plus" badgeClass="p-badge-contrast" outlined="true" (click)="openCraete()" />
+<div class="addTask flex justify-content-center align-items-center h-screen" *ngIf="false">
+    <p-button pRipple label="Add Task" icon="pi pi-plus" badgeClass="p-badge-contrast" outlined="true" (click)="openCreate()" />
 </div>  
-<!-- <div class="card">
-    <p-table [value]="products" [tableStyle]="{'min-width': '50rem'}">
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th>Name </th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Quantity</th>
-                <th>Status</th>
-                <th>Reviews</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product let-columns="columns">
-            <tr>
-                <td>
-                    {{product.name}}
-                </td>
-                <td>
-                    {{product.price | currency:'USD'}}
-                </td>
-                <td>
-                    {{product.category}}
-                </td>
-                <td>
-                    {{product.quantity}}
-                </td>
-                <td>
-                    <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" />
-                </td>
-                <td>
-                    <p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false" />
-                </td>
-            </tr>
-        </ng-template>
+
+<!-- Task Table -->
+<div class="table-container" *ngIf="tasks && tasks.length > 0">
+    <p-table [value]="tasks" class="p-datatable-responsive custom-table">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Task Name</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-task>
+        <tr>
+          <td>{{ task.taskName }}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.status }}</td>
+          <td class="action">
+            <button pButton label="Edit" icon="pi pi-pencil" styleClass="p-button-sm p-button-info " (click)="editTask(task)"></button>
+            <button pButton label="Delete" icon="pi pi-trash" styleClass="p-button-sm p-button-danger" (click)="deleteTask(task)"></button>
+          </td>
+        </tr>
+      </ng-template>
     </p-table>
-</div> -->
+  </div>
+  

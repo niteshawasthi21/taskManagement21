@@ -4,6 +4,7 @@ import { PrimengComponentsModule } from '../../shared/components/primeng-compone
 import { DialogService } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig, DynamicDialogRef, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CreateTaskComponent } from '../create-task/create-task.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -34,46 +35,67 @@ export interface Product {
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  products!: Product[];
+   
+  tasks: any[] = [];
+  taskDialog: boolean = false;
+  taskForm!: FormGroup;
+  editMode: boolean = false;
+  currentTask: any;
 
-  cols!: Column[];
+  constructor(private fb: FormBuilder, private dialogService: DialogService) {
+    this.taskForm = this.fb.group({
+      name: ['', Validators.required]
+    });
+  }
+ 
 
-  constructor(private productService: ProductService,
-    private dialogService: DialogService
-  ) {}
+  ngOnInit() {   
+    this.generateMockData(); 
+  } 
 
-  ngOnInit() {
-      this.productService.getProductsMini().then((data) => {
-          this.products = data;
-      });
-
-      this.cols = [
-          { field: 'code', header: 'Code' },
-          { field: 'name', header: 'Name' },
-          { field: 'category', header: 'Category' },
-          { field: 'quantity', header: 'Quantity' },
-          { field: 'inventoryStatus', header: 'Status' },
-          { field: 'rating', header: 'Rating' }
-      ];
+  editTask(task: any) {
+    this.editMode = true;
+    this.currentTask = task;
+    this.taskDialog = true;
+    this.taskForm.patchValue(task);
   }
 
-  public getSeverity(status: string) {
-      switch (status) {
-          case 'INSTOCK':
-              return 'success';
-          case 'LOWSTOCK':
-              return 'warning';
-          case 'OUTOFSTOCK':
-              return 'danger';
-          default:
-            return;
-      }
+  generateMockData() {
+    this.tasks = [
+      { taskName: 'Design UI', description: 'Create the user interface layout', status: 'In Progress' },
+      { taskName: 'API Integration', description: 'Connect to the backend API', status: 'Pending' },
+      { taskName: 'Bug Fix', description: 'Fix issues in the task module', status: 'Completed' },
+      { taskName: 'Write Documentation', description: 'Prepare the technical documents', status: 'Pending' },
+      { taskName: 'Testing', description: 'Perform unit and integration testing', status: 'In Progress' }
+    ];
   }
+
+  saveTask() {
+    if (this.taskForm.invalid) return;
+
+    const task = this.taskForm.value;
+
+    if (this.editMode) {
+      const index = this.tasks.findIndex(t => t === this.currentTask);
+      this.tasks[index] = task;
+    } else {
+      this.tasks.push(task);
+    }
+
+    this.taskDialog = false;
+    this.taskForm.reset();
+  }
+
+  deleteTask(task: any) {
+    this.tasks = this.tasks.filter(t => t !== task);
+  }
+
+   
   
-  openCraete() {
+  openCreate() {
     return this.dialogService.open(CreateTaskComponent,{
       header: 'Create New Task',
-      width: '50%',
+      width: '25%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000      
   })
